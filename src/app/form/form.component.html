@@ -1,6 +1,5 @@
-<!--<div class="container">
-  <h4>Form</h4>
-  <form #f="ngForm">
+<div class="container">
+  <form name="form" [formGroup]="form">
     <div class="form-group">
       <label for="fname">FirstName:</label>
       <input
@@ -9,8 +8,13 @@
         id="fname"
         placeholder="Enter FirstName"
         name="fname"
-        ngModel>
+        ngModel
+        required
+        #firstName="ngModel">
+      <!--<span class="help-block">Please enter a valid name!</span>-->
     </div>
+    <span class="help-block" *ngIf="!firstName.valid && firstName.touched">please enter valid firstname!</span>
+    <hr>
     <div class="form-group">
       <label for="lname">LastName:</label>
       <input
@@ -19,8 +23,7 @@
         id="lname"
         placeholder="Enter LastName"
         name="lname"
-        ngModel
-        required>
+        formControlName="lastname">
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
@@ -30,9 +33,7 @@
         id="email"
         placeholder="Enter email"
         name="email"
-        ngModel
-        required
-        email>
+        formControlName="email">
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
@@ -42,17 +43,12 @@
         id="pwd"
         placeholder="Enter password"
         name="pswd"
-        ngModel
-        required>
+        formControlName="password">
     </div>
     <button
-      type="submit"
+      type="button"
       class="btn btn-primary"
-      [disabled]="!f.valid">Submit
+      [disabled]="!form.valid">Submit
     </button>
   </form>
-</div>-->
-<app-form></app-form>
-
-
-
+</div>
